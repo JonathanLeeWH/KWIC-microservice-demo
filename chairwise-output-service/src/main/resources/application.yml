@@ -1,0 +1,25 @@
+user:
+  local.static.file:
+    endpoint: /files/
+    path: /opt/files/
+
+spring:
+  profiles:
+    active: '@activatedProperties@'
+    
+---
+
+spring:
+  profiles: dev-docker
+    
+server:
+  port: 8083
+
+---
+
+spring:
+  profiles: dev-kubernetes
+
+server:
+  port: 8083
+  

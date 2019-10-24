@@ -1,0 +1,40 @@
+logging:
+  level:
+    org.springframework.web.reactive.function.client.ExchangeFunctions: TRACE
+
+spring:
+  profiles:
+    active: '@activatedProperties@'
+  http:
+    log-request-details: true
+  servlet:
+    multipart.max-file-size: 5GB
+    multipart.max-request-size: 5GB
+
+---
+
+spring:
+  profiles: dev-docker
+    
+server:
+  port: 8084
+
+api.url.base:
+  input: http://inputapi:8080/
+  circular-shift: http://circularshiftapi:8081/
+  sorting: http://sortingapi:8082/
+  output: http://outputapi:8083/
+
+---
+
+spring:
+  profiles: dev-kubernetes
+
+server:
+  port: 8084
+
+api.url.base:
+  input: http://192.168.99.113:31728/
+  circular-shift: http://192.168.99.113:32096/
+  sorting: http://192.168.99.113:30263/
+  output: http://192.168.99.113:30069/
